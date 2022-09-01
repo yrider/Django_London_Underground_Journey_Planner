@@ -82,6 +82,6 @@ Press the plan my journey button and wait for the route to be displayed:
 
 ![view_results](static/readme_results.jpeg)
 
-In the event that we accidentally choose the same station twice, a pop-up box will appear displaying this
+In the event a user accidentally chooses the same station twice, a pop-up box will appear to alert the user:
 
 ![wrong input](static/readme_error.jpeg)
