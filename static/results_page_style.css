@@ -1,0 +1,35 @@
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.bg{
+    background-image: url(greenwichPhoto.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.bginput{
+    opacity: 0.2;
+}
+
+.right{
+    float: right;
+}
+
+.clock-size{
+    width: 25%;
+    height: 10px;
+}
+
+.white{
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+   
+}

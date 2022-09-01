@@ -1,0 +1,7 @@
+NOTE: 
+
+Any updates made to templates MUST be saved and then replaced with the current files in the following directory:
+
+DjangoUndergroundPlanner\Lib\site-packages\django\contrib\admin\templates
+
+Also, if new updates are not appearing make sure you restart the server as this makes a difference

@@ -1,0 +1,209 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Your Journey Results</title>
+    {% endif %}
+
+  <link rel="stylesheet" type="text/css" href="{% static '\results_page_style.css' %}">
+
+  <style>
+  
+    #filler {
+      height: 10vh;
+    }
+
+    .topp {
+      margin-top: 0.5%;
+    }
+
+    #title {
+      color: black;
+      font-size: 3vw;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .settings {
+      margin-left: 10%;
+      margin-right: 10%;
+      border-radius: 5px;
+    }
+
+    .separator {
+      border-right: 3px solid black;
+    }
+
+    #table {
+      height: 50vh;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div>
+  <div class="col-12 text-center bg">
+
+    <div>
+    <div class="row text-center" id="title" style="place-content: center;">
+      <div class="center" >
+        <br>
+        <h1 class="white text-center">Here Are Your Journey Results!</h1>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row bg-white settings topp align-items-center">
+      <div class="col-2 col-md-2 col-sm-2">
+        <label for="from" class="col col-form-label font-weight-bold">From:</label>
+      </div>
+
+      <div class="col-4 col-md-4 col-sm-4">      
+        <label for="yx" class="col col-form-label">{{ station_one }}</label>
+      </div>
+
+      <div class="col-2 col-md-2 col-sm-2">
+        <label for="leaving" class="col col-form-label font-weight-bold">Leaving:</label>
+      </div>
+
+      <div class="col-4 col-md-4 col-sm-4">
+        <label for="XX" class="col col-form-label">
+          {{ weekday }} {{ weekday_int }} {{ month }}, {{ time }}
+        </label>
+      </div>
+    </div>
+    
+    <div class="row bg-white settings topp align-items-center">
+      <div class="col-2 col-md-2 col-sm-2">
+        <label for="to" class="col col-form-label font-weight-bold">To:</label>
+      </div>
+
+      <div class="col-4 col-md-4 col-sm-4">
+        <label for="xy" class="col col-form-label">{{ station_two }}</label>
+      </div>
+
+      <div class="col-2 col-md-2 col-sm-2">
+        <label for="totaltime" class="col col-form-label font-weight-bold">Total Journey Time:</label>
+      </div>
+
+      <div class="col-4 col-md-4 col-sm-4">
+        <label for="xx" class="col col-form-label">{{ total_sum }} minutes</label>
+      </div>
+  </div>
+
+  <!-- CODE BELOW FOR JOURNEY SUMMARY E.G WHAT LINES TO GET ON AND OFF -->
+
+  <br>
+
+  <div class="table-wrapper-scroll-y settings topp my-custom-scrollbar rounded mb-0">
+    <table class="table table-bordered bg-white table-striped rounded">
+      <thead>
+        <tr>
+          <th scope="col">Line:</th>
+          <th scope="col">From Station:</th>
+          <th scope="col">To Station:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+              <div>
+                  {% for line in line_change_list %}
+                    <li style="list-style-type: none; padding: 5px;">{{ line }}</li>      
+                    <b>change lines</b>
+                  {% endfor %}
+                  <br>
+                  {{ last_line }}
+
+              </div>
+          </td>
+          <td>
+              <div>
+                  {% for station in from_station_change_list %}
+                      <li style="list-style-type: none; padding: 5px;">{{ station }}</li>
+                      <br>
+                  {% endfor %}
+                  {{ last_from_station }}
+              </div>
+          </td>
+          <td>
+              <div>
+                  {% for station in to_station_change_list %}
+                      <li style="list-style-type: none; padding: 5px;">{{ station }}</li>
+                      <br>
+                  {% endfor %}
+                  {{ last_station }}
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+
+
+  <!-- TABLE BELOW TO SHOW FULL JOURNEY -->
+
+  <br>
+
+  <div class="table-wrapper-scroll-y settings topp my-custom-scrollbar rounded mb-0">
+
+    <table class="table table-bordered bg-white table-striped rounded">
+      <thead>
+        <tr>
+          <th scope="col">Station</th>
+          <th scope="col">Line</th>
+          <th scope="col">Travel Time To Next Station</th>
+          <th scope="col">Total Trave Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+              <div>
+                  {% for station in shortest_route %}
+                        <li style="list-style-type: none; padding: 5px;">{{ station }}</li>                 
+                  {% endfor %}
+              </div>
+          </td>
+          <td>
+              <div>
+                  {% for line in train_lines %}
+                      <li style="list-style-type: none; padding: 5px;">{{ line }}</li>  
+                  {% endfor %}
+              </div>
+          </td>
+          <td>
+              <div>
+                  {% for minute in minutes %}
+                      <li style="list-style-type: none; padding: 5px;">{{ minute }} min</li>  
+                  {% endfor %}
+              </div>
+          </td>
+          <td>
+            <div>
+                {% for minute in total %}
+                    <li style="list-style-type: none; padding: 5px;">{{ minute }} min</li>  
+                {% endfor %}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+
+</body>
+</html>
