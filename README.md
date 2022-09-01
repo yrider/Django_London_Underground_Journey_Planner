@@ -43,7 +43,7 @@ This project requires:
 * pandas == 1.1.4
 * xlrd == 1.2.0
 
-### Getting Started
+## Getting Started
 
 Before running the program, please ensure:
 
@@ -70,7 +70,7 @@ Copy and paste ```http://127.0.0.1:8000/```, your local ip address, into your in
 
 You're now ready to select a route!
 
-### Example Screenshots
+## Example Screenshots
 
 In this example we start our journey at Barking and end at Cutty Sark station:
 
